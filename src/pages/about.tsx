@@ -21,7 +21,7 @@ const About = () => {
 
 ## About
 
-This dashboard is made with love by members of the Ethereum community, in partnership with Flipside Crypto. We hope it serves as a valuable window into high-level metrics that display the vitality and growth of the optimism.io.
+This dashboard is made with love by members of the Ethereum community, in partnership with Flipside Crypto. We hope it serves as a valuable window into high-level metrics that display the vitality and growth of the Polygon.
 
   
 

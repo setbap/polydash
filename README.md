@@ -1,2 +1,2 @@
-- Optimismdash
-  `dashboard for Optimism network as Flipside Crypto Project `
+- PolyDash
+  `dashboard for Polygon network as Flipside Crypto Project `
