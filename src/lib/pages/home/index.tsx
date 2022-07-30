@@ -83,7 +83,7 @@ Props) => {
             link="https://www.coingecko.com/en/coins/polygon"
             status="unchanged"
             title={"Current Matic Price (USD)"}
-            getStat={(data) => data["matic"].usd}
+            getStat={(data) => data["matic-network"].usd}
           />
 
           <StatsCard
