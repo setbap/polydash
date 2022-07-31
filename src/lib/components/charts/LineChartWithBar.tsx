@@ -11,14 +11,14 @@ import { useState } from "react";
 import moment from "moment";
 import millify from "millify";
 import {
-  AreaChart,
-  Legend,
   Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  ComposedChart,
+  Bar,
 } from "recharts";
 import { GRID_ITEM_SIZE } from "./template";
 import ChartSpanMenu from "../basic/ChartSpanMenu";
@@ -27,12 +27,12 @@ import { FilterDayBarBox } from "../basic/FilterDayBar";
 import { AnimatePresence } from "framer-motion";
 import MotionBox from "../motion/Box";
 import LinkToSourceMenuItem from "../basic/LinkToSourceMenuItem";
-import TrendLine from "./TrendLine";
 
 interface Props {
   modelInfo: string;
   xAxisDataKey: string;
-  areaDataKey: string;
+  lineDataKey: string;
+  barDataKey: string;
   title: string;
   tooltipTitle: string;
   data: any[];
@@ -44,18 +44,20 @@ interface Props {
   defultDateView?: "month" | "day";
   showMonthly?: boolean;
   queryLink?: string;
+  barColor: string;
   additionalDumpTextToAddKeyToKeyBeUnique?: string;
   customColor?: string;
 }
 
-const ChartBox = ({
+const LineChartWithBar = ({
   baseSpan = 1,
   defultDateView = "day",
   queryLink,
+  barColor,
   isNotDate = false,
   extraDecimal = 2,
-  domain,
-  areaDataKey,
+  lineDataKey,
+  barDataKey,
   xAxisDataKey,
   data,
   title,
@@ -111,7 +113,7 @@ const ChartBox = ({
       if (newData[monthName] === undefined) {
         newData[monthName] = [];
       }
-      newData[monthName].push(item[areaDataKey]);
+      newData[monthName].push(item[lineDataKey]);
     });
     setDefultViewSetting("month");
     setSavedDailyChart(chartData);
@@ -119,7 +121,7 @@ const ChartBox = ({
       Object.entries(newData).map(([key, value]) => {
         return {
           [xAxisDataKey]: key,
-          [areaDataKey]: value.reduce((a, b) => a + b, 0),
+          [lineDataKey]: value.reduce((a, b) => a + b, 0),
         };
       })
     );
@@ -150,7 +152,7 @@ const ChartBox = ({
   const bgCard = useColorModeValue("white", "#191919");
   const textColor = useColorModeValue("gray.900", "gray.100");
   const chartColor = customColor;
-  const chartUniquKey = `${areaDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`;
+  const chartUniquKey = `${lineDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`;
 
   return (
     <GridItem
@@ -221,9 +223,9 @@ const ChartBox = ({
           height={!isNotDate && defultViewSetting === "day" ? 380 : 425}
           width={"100%"}
         >
-          <AreaChart
+          <ComposedChart
             data={chartData}
-            syncId={chartUniquKey}
+            syncId={chartUniquKey + "s"}
             className="mt-1 mb-1"
           >
             <defs>
@@ -263,8 +265,9 @@ const ChartBox = ({
               }}
               dataKey={xAxisDataKey}
             />
+
             <YAxis
-              domain={domain}
+              yAxisId="left"
               tickFormatter={(value) =>
                 millify(value, {
                   precision: extraDecimal,
@@ -275,6 +278,18 @@ const ChartBox = ({
               fontSize="12"
               tickSize={8}
             />
+            <YAxis
+              tickFormatter={(value) =>
+                millify(value, {
+                  precision: extraDecimal,
+                  decimalSeparator: ".",
+                })
+              }
+              width={80}
+              yAxisId="right"
+              orientation="right"
+              tick={{ fontSize: 10 }}
+            ></YAxis>
             <Tooltip
               labelFormatter={(value: string) => {
                 if (isNotDate || defultViewSetting === "month") {
@@ -293,16 +308,14 @@ const ChartBox = ({
                 });
               }}
             />
-            <TrendLine
-              data={chartData}
-              xKey={xAxisDataKey}
-              yKey={areaDataKey}
-            />
+            <Bar yAxisId="right" dataKey={barDataKey} fill={barColor} />
+
             <Area
-              dataKey={areaDataKey}
+              dataKey={lineDataKey}
+              yAxisId="left"
+              strokeWidth={"2"}
               style={{ stroke: chartColor }}
-              stroke={"red"}
-              fill={`url(#color${additionalDumpTextToAddKeyToKeyBeUnique})`}
+              fill={`${chartColor}6f`}
             />
 
             {/* <Legend
@@ -310,7 +323,7 @@ const ChartBox = ({
               fontSize={"8px"}
               style={{ fontSize: "7px" }}
             /> */}
-          </AreaChart>
+          </ComposedChart>
         </ResponsiveContainer>
         <AnimatePresence>
           {!isNotDate && defultViewSetting === "day" && (
@@ -355,4 +368,4 @@ const ChartBox = ({
   );
 };
 
-export default ChartBox;
+export default LineChartWithBar;

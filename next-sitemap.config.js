@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 const NextSitemapConfig = {
-  siteUrl: "https://Optimismdash.vercel.app",
+  siteUrl: "https://Polygondash.vercel.app",
   generateRobotsTxt: true,
 };
 

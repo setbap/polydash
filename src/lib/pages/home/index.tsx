@@ -2,6 +2,7 @@ import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import BarGraph from "lib/components/charts/BarGraph";
 import DonutChart from "lib/components/charts/DonutChart";
 import ChartBox from "lib/components/charts/LineChart";
+import LineChartWithBar from "lib/components/charts/LineChartWithBar";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { StatsCard } from "lib/components/charts/StateCard";
@@ -43,22 +44,14 @@ Props) => {
   return (
     <>
       <NextSeo
-        title="PolyDash | Business Intelligence Dashboard for Polygon"
-        description="Track the latest stats and trends on Optimism"
+        title="PolygonDash | Business Intelligence Dashboard for Polygon"
+        description="Track the latest stats and trends on Polygon"
         openGraph={{
-          url: "https://PolyDash.vercel.app/",
-          title: "PolyDash | Business Intelligence Dashboard for Polygon",
+          url: "https://PolygonDash.vercel.app/",
+          title: "PolygonDash | Business Intelligence Dashboard for Polygon",
           description: "Track the latest stats and trends on Polygon",
-          // images: [
-          //   {
-          //     url: "https://ogOptimismDash.vercel.app/ogOptimismDash.png",
-          //     width: 1200,
-          //     height: 630,
-          //     alt: "Overview Terra Information",
-          //     type: "image/png",
-          //   },
-          // ],
-          site_name: "PolyDash",
+
+          site_name: "PolygonDash",
         }}
         twitter={{
           handle: "@flipsidecrypto",
@@ -116,6 +109,7 @@ Props) => {
           spacing={{ base: 1, md: 2, lg: 4 }}
         >
           <ChartBox
+            customColor="#8247e5"
             data={tokenInfoData}
             queryLink="https://app.flipsidecrypto.com/velocity/queries/40f643c5-5d22-4395-bad6-c3969074e794"
             tooltipTitle="Number of Holders"
@@ -127,6 +121,7 @@ Props) => {
           />
 
           <ChartBox
+            customColor="#8247e5"
             data={tokenInfoData}
             queryLink="https://app.flipsidecrypto.com/velocity/queries/40f643c5-5d22-4395-bad6-c3969074e794"
             tooltipTitle="Matic Price"
@@ -137,15 +132,19 @@ Props) => {
             xAxisDataKey="Day"
           />
 
-          {/* <DonutChart
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/c9226b84-3ca7-4da2-ab29-91dc9e438ca4"
-            data={transactionDistributionData}
-            tooltipTitle="Distribution of Transaction in Optimism"
-            modelInfo="Distribution of Transaction in Optimism"
-            title="Distribution of Transaction in Optimism"
-            dataKey="count"
-            nameKey="TX # Range"
-          /> */}
+          <LineChartWithBar
+            customColor="#8247e5"
+            barColor="#5effff60"
+            data={tokenInfoData}
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/40f643c5-5d22-4395-bad6-c3969074e794"
+            tooltipTitle="Price VS Circulating Supply"
+            modelInfo="Price VS Circulating Supply"
+            title="Price VS Circulating Supply"
+            baseSpan={3}
+            barDataKey="Curculating Supply"
+            lineDataKey="Matic Price"
+            xAxisDataKey="Day"
+          />
         </SimpleGrid>
       </Box>
     </>

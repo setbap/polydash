@@ -1,24 +1,24 @@
 /** @type {import('next-seo').DefaultSeoProps} */
 const defaultSEOConfig = {
-  title: "PolyDash",
+  title: "PolygonDash",
   titleTemplate: "%s | Business Intelligence Dashboard for Polygon",
   defaultTitle:
-    "PolyDash | Business Intelligence Dashboard for Polygon ",
+    "PolygonDash | Business Intelligence Dashboard for Polygon ",
   description:
     "Best Business Intelligence Dashboard for Polygon by Flipside Crypto and Setbap ",
-  canonical: "https://PolyDash.vercel.app/",
+  canonical: "https://PolygonDash.vercel.app/",
   openGraph: {
-    url: "https://PolyDash.vercel.app/",
-    title: "PolyDash",
+    url: "https://PolygonDash.vercel.app/",
+    title: "PolygonDash",
     description:
       "Best Business Intelligence Dashboard for Polygon by Flipside Crypto and Setbap ",
     images: [
       {
-        url: "https://og-image.sznm.dev/**PolyDash**.vercel.app.png?theme=dark&md=1&fontSize=125px",
-        alt: "PolyDash by Flipside Crypto and Setbap",
+        url: "https://og-image.sznm.dev/**PolygonDash**.vercel.app.png?theme=dark&md=1&fontSize=125px",
+        alt: "PolygonDash by Flipside Crypto and Setbap",
       },
     ],
-    site_name: "PolyDash",
+    site_name: "PolygonDash",
   },
   twitter: {
     handle: "@flipsidecrypto",

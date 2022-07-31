@@ -127,9 +127,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 fontFamily="sans-serif"
                 fontSize="2xl"
                 ps={"2"}
+                color="#8247e5"
                 fontWeight={"extrabold"}
               >
-                PolyDash
+                PolygonDash
               </Box>
             </>
           </NextLink>
@@ -238,7 +239,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               fontSize="2xl"
               fontWeight={"extrabold"}
             >
-              OptimismDash
+              PolygonDash
             </Box>
           </>
         </NextLink>
