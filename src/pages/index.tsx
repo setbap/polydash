@@ -1,5 +1,9 @@
 import Home from "lib/pages/home";
-import { getTotalTokenInfo, tokenInfo } from "lib/requests/home";
+import {
+  getDailyTXCount,
+  getTotalTokenInfo,
+  tokenInfo,
+} from "lib/requests/home";
 export async function getStaticProps() {
   const [
     // static
@@ -7,12 +11,14 @@ export async function getStaticProps() {
     // simple
     tokenInfoData,
     // seorate
+    dailyTXCount,
   ] = await Promise.all([
     // static
     getTotalTokenInfo(),
     // simple
     tokenInfo(),
     // seorate
+    getDailyTXCount(),
   ]);
   return {
     props: {
@@ -21,6 +27,7 @@ export async function getStaticProps() {
       // simple
       tokenInfoData,
       // seorate
+      dailyTXCount,
     },
     revalidate: 10 * 60,
   };

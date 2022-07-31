@@ -1,4 +1,5 @@
 import {
+  IRawDailyActiveWallet,
   IRawTokenInfo,
   IRawTotalTokenInfo,
   ITokenInfo,
@@ -29,32 +30,33 @@ export const tokenInfo: () => Promise<ITokenInfo[]> = async () => {
     }));
 };
 
-// export const getDappsSwapCount: () => Promise<any> = async () => {
-//   const res = await fetch(
-//     "https://node-api.flipsidecrypto.com/api/v2/queries/8e973cc7-d261-4693-8060-fe3685764911/data/latest"
-//   );
-//   const fetchedData: IRawDappsSwapCount[] = await res.json();
-//   const dappsName = Array.from(
-//     new Set(
-//       fetchedData.map((item) => {
-//         return item["NAME"];
-//       })
-//     )
-//   );
-//   const dappsSwapCount = calculateDailyBridgeValue(
-//     "MM/DD/YYYY",
-//     fetchedData,
-//     "DATE",
-//     "NAME",
-//     "COUNT(*)",
-//     dappsName,
-//     0
-//   );
-//   return {
-//     dappsSwapCount,
-//     dappsName,
-//   };
-// };
+export const getDailyTXCount: () => Promise<any> = async () => {
+  const res = await fetch(
+    "https://node-api.flipsidecrypto.com/api/v2/queries/ab9bcd7a-2f6d-48a9-9b92-17343f1da5fc/data/latest"
+  );
+  const rawData: IRawDailyActiveWallet[] = await res.json();
+  const typeName = Array.from(
+    new Set(
+      rawData.map((item) => {
+        return item["TYPE"];
+      })
+    )
+  );
+  const transactionCountType = calculateDailyBridgeValue(
+    "MM/DD/YYYY",
+    rawData,
+    "DATE",
+    "TYPE",
+    "ACTIVE_USERS",
+    typeName,
+    0
+  );
+
+  return {
+    txCount: transactionCountType,
+    typeName,
+  };
+};
 
 function calculateDailyBridgeValue(
   dateFormat: string,
@@ -92,5 +94,6 @@ function calculateDailyBridgeValue(
     .sort((a, b) => {
       return moment(a.date).isAfter(moment(b.date)) ? 1 : -1;
     });
+
   return dailyBridgeValue;
 }

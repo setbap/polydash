@@ -30,6 +30,8 @@ interface Props {
   allTotalTokenInfo: IRawTotalTokenInfo;
   // simple
   tokenInfoData: ITokenInfo[];
+  // seorate
+  dailyTXCount: any;
 }
 
 const Home = ({
@@ -37,8 +39,9 @@ const Home = ({
   allTotalTokenInfo,
   // simple
   tokenInfoData,
-}: // seorate
-Props) => {
+  // seorate
+  dailyTXCount,
+}: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
 
   return (
@@ -144,6 +147,27 @@ Props) => {
             barDataKey="Curculating Supply"
             lineDataKey="Matic Price"
             xAxisDataKey="Day"
+          />
+
+          <StackedAreaChart
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/ab9bcd7a-2f6d-48a9-9b92-17343f1da5fc"
+            modelInfo="number of address make tx in Polygon"
+            values={dailyTXCount.txCount}
+            title="Daily Transaction Count"
+            dataKey="date"
+            baseSpan={3}
+            oyLabel="Number Transaction"
+            oxLabel="name"
+            labels={[
+              {
+                color: colors[1],
+                key: "Doing transactions",
+              },
+              {
+                color: colors[0],
+                key: "Receiving tokens",
+              },
+            ]}
           />
         </SimpleGrid>
       </Box>

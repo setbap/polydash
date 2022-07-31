@@ -20,3 +20,9 @@ export interface IRawTotalTokenInfo {
   CURCULATING_SUPPLY: number;
   HOLDERS: number;
 }
+
+export interface IRawDailyActiveWallet {
+  TYPE: string;
+  DATE: string;
+  ACTIVE_USERS: number;
+}
