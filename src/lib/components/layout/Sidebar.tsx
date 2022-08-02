@@ -20,18 +20,16 @@ import NextLink from "next/link";
 import { FiHome, FiMenu } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
-import ThemeToggle from "./ThemeToggle";
 import { useRouter } from "next/router";
-import { SiBuzzfeed } from "react-icons/si";
-import { RiGovernmentLine } from "react-icons/ri";
-import { VscArrowSwap } from "react-icons/vsc";
-import { FaBitcoin } from "react-icons/fa";
-import { CgAnchor } from "react-icons/cg";
-import { AiFillDollarCircle, AiOutlineInfoCircle } from "react-icons/ai";
-import { GiBlackBook } from "react-icons/gi";
+import {
+  AiFillMoneyCollect,
+  AiOutlineInfoCircle,
+  AiOutlineShareAlt,
+} from "react-icons/ai";
 import MotionBox from "../motion/Box";
+import { CgPerformance } from "react-icons/cg";
+import { FaMoneyBillAlt } from "react-icons/fa";
 
-import { BiNetworkChart } from "react-icons/bi";
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -39,6 +37,8 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: "Home", path: "/", icon: FiHome },
+  { name: "Fees", path: "/fees", icon: FaMoneyBillAlt },
+  { name: "Performance", path: "/performance", icon: CgPerformance },
   { name: "TX History", path: "/transactions", icon: AiOutlineInfoCircle },
   { name: "About", path: "/about", icon: AiOutlineInfoCircle },
 ];
