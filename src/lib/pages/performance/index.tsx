@@ -78,7 +78,7 @@ Props) => {
           <StatsCard
             link="https://app.flipsidecrypto.com/velocity/queries/b7ecf5c5-87b8-4d5d-a7fb-8a04702c90a8"
             status="inc"
-            title={"Average Block Time"}
+            title={"Average Block Time (second)"}
             stat={performanceTotalInfo["Average Block Time"]}
           />
 
@@ -86,7 +86,7 @@ Props) => {
             link="https://app.flipsidecrypto.com/velocity/queries/b7ecf5c5-87b8-4d5d-a7fb-8a04702c90a8"
             status="inc"
             stat={performanceTotalInfo["Average TX count per block"]}
-            title={"Average TX count per block"}
+            title={"Average TX count per block (second)"}
           />
 
           <StatsCard
